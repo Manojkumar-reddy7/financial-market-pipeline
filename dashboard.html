@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Market Data Pipeline — HSBC Analytics</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0e1a; --bg2: #0f1422; --bg3: #141829; --surface: #1a2035;
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+    --text: #e8ecf5; --text2: #8b92a8; --text3: #555d72;
+    --green: #00e676; --green-dim: rgba(0,230,118,0.12);
+    --blue: #448aff; --blue-dim: rgba(68,138,255,0.12);
+    --amber: #ffc107; --amber-dim: rgba(255,193,7,0.12);
+    --red: #ff5252; --red-dim: rgba(255,82,82,0.12);
+    --teal: #00bcd4;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
+
+  header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .logo-icon { width: 32px; height: 32px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; margin-right: 10px; }
+  .logo { display: flex; align-items: center; }
+  .logo-text { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; }
+  .logo-sub { font-size: 11px; color: var(--text2); font-family: 'IBM Plex Mono', monospace; }
+  .header-right { display: flex; gap: 8px; }
+  .badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,230,118,0.2); }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(68,138,255,0.2); }
+  .live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; display: inline-block; margin-right: 5px; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  main { max-width: 1400px; margin: 0 auto; padding: 28px 32px; }
+  .section-label { font-size: 11px; font-family: 'IBM Plex Mono', monospace; color: var(--text3); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px; margin-top: 28px; }
+
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 4px; }
+  .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; position: relative; overflow: hidden; }
+  .metric-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .mc-green::after { background: var(--green); }
+  .mc-blue::after { background: var(--blue); }
+  .mc-amber::after { background: var(--amber); }
+  .mc-teal::after { background: var(--teal); }
+  .metric-label { font-size: 11px; color: var(--text2); font-family: 'IBM Plex Mono', monospace; margin-bottom: 8px; }
+  .metric-value { font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+  .metric-sub { font-size: 11px; color: var(--text3); margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
+  .mc-green .metric-value { color: var(--green); }
+  .mc-blue .metric-value { color: var(--blue); }
+  .mc-amber .metric-value { color: var(--amber); }
+  .mc-teal .metric-value { color: var(--teal); }
+
+  .grid-main { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+  .grid-half { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+  .panel-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .panel-sub { font-size: 11px; color: var(--text2); font-family: 'IBM Plex Mono', monospace; margin-bottom: 16px; }
+
+  .sym-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .sym-btn { padding: 4px 11px; border-radius: 6px; border: 1px solid var(--border2); background: transparent; color: var(--text2); font-family: 'IBM Plex Mono', monospace; font-size: 11px; cursor: pointer; transition: all 0.15s; }
+  .sym-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .sym-btn.active { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+  .chart-wrap { position: relative; }
+
+  .dag-flow { display: flex; align-items: stretch; gap: 0; }
+  .dag-task { flex: 1; background: var(--bg3); border: 1px solid rgba(0,230,118,0.25); border-radius: 10px; padding: 14px 16px; position: relative; }
+  .dag-arrow { width: 36px; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: 20px; flex-shrink: 0; }
+  .dag-task-name { font-size: 12px; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+  .dag-task-tool { font-size: 10px; color: var(--text2); font-family: 'IBM Plex Mono', monospace; margin-bottom: 10px; }
+  .dag-stats { display: flex; justify-content: space-between; font-size: 11px; font-family: 'IBM Plex Mono', monospace; }
+  .dag-in { color: var(--text3); }
+  .dag-out { color: var(--green); }
+  .dag-dot { position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 10px; font-family: 'IBM Plex Mono', monospace; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; padding: 0 10px 10px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 10px; border-bottom: 1px solid var(--border); font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .rbadge { padding: 3px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+  .rLOW { background: var(--green-dim); color: var(--green); }
+  .rMEDIUM { background: var(--amber-dim); color: var(--amber); }
+  .rHIGH { background: var(--red-dim); color: var(--red); }
+  .pos { color: var(--green); } .neg { color: var(--red); }
+
+  .vol-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .vol-sym { width: 44px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text2); }
+  .vol-bg { flex: 1; height: 7px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+  .vol-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--teal)); }
+  .vol-val { width: 58px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text2); }
+
+  .arch-row { display: flex; align-items: center; gap: 0; margin-top: 10px; }
+  .arch-box { flex: 1; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 10px; text-align: center; }
+  .arch-icon { font-size: 18px; margin-bottom: 5px; }
+  .arch-name { font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+  .arch-tech { font-size: 10px; color: var(--text2); font-family: 'IBM Plex Mono', monospace; line-height: 1.5; }
+  .arch-arr { width: 28px; text-align: center; color: var(--text3); font-size: 16px; flex-shrink: 0; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 32px; text-align: center; color: var(--text3); font-size: 11px; font-family: 'IBM Plex Mono', monospace; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
+  .ttag { padding: 3px 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; font-size: 10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">DP</div>
+    <div>
+      <div class="logo-text">Financial Market Data Pipeline</div>
+      <div class="logo-sub">financial_market_pipeline_v1 &nbsp;·&nbsp; run: 2387fc558500 &nbsp;·&nbsp; 2026-04-04</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="badge badge-green"><span class="live-dot"></span>3 / 3 Tasks Succeeded</span>
+    <span class="badge badge-blue">Airflow · BigQuery · DBT · Dataflow</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-label">Pipeline Run Summary</div>
+  <div class="metrics-row">
+    <div class="metric-card mc-green">
+      <div class="metric-label">Ticks Ingested &mdash; Dataflow</div>
+      <div class="metric-value">4,800</div>
+      <div class="metric-sub">30 days · 8 symbols · market hours</div>
+    </div>
+    <div class="metric-card mc-blue">
+      <div class="metric-label">OHLCV Records &mdash; BigQuery SQL</div>
+      <div class="metric-value">1,805</div>
+      <div class="metric-sub">Hourly candle aggregation</div>
+    </div>
+    <div class="metric-card mc-amber">
+      <div class="metric-label">Risk Metrics &mdash; DBT Mart</div>
+      <div class="metric-value">8</div>
+      <div class="metric-sub">Volatility · Sharpe · 7d rolling</div>
+    </div>
+    <div class="metric-card mc-teal">
+      <div class="metric-label">Data Reduction Ratio</div>
+      <div class="metric-value">99.8%</div>
+      <div class="metric-sub">4,800 raw ticks → 8 final metrics</div>
+    </div>
+  </div>
+
+  <div class="section-label">Airflow DAG Execution &mdash; Task Graph</div>
+  <div class="panel" style="margin-bottom:0;">
+    <div class="panel-title">financial_market_pipeline_v1</div>
+    <div class="panel-sub">ingest_market_ticks &rarr; transform_to_ohlcv &rarr; build_risk_mart &nbsp;&nbsp; All tasks: SUCCESS</div>
+    <div class="dag-flow">
+      <div class="dag-task">
+        <div class="dag-dot"></div>
+        <div class="dag-task-name">ingest_market_ticks</div>
+        <div class="dag-task-tool">Google Dataflow &nbsp;·&nbsp; Apache Beam streaming</div>
+        <div class="dag-stats"><span class="dag-in">IN: 0 rows</span><span class="dag-out">OUT: 4,800 ticks</span></div>
+      </div>
+      <div class="dag-arrow">&rarr;</div>
+      <div class="dag-task">
+        <div class="dag-dot"></div>
+        <div class="dag-task-name">transform_to_ohlcv</div>
+        <div class="dag-task-tool">Google BigQuery &nbsp;·&nbsp; SQL aggregation</div>
+        <div class="dag-stats"><span class="dag-in">IN: 4,800</span><span class="dag-out">OUT: 1,805 OHLCV</span></div>
+      </div>
+      <div class="dag-arrow">&rarr;</div>
+      <div class="dag-task">
+        <div class="dag-dot"></div>
+        <div class="dag-task-name">build_risk_mart</div>
+        <div class="dag-task-tool">DBT &nbsp;·&nbsp; mart__risk_metrics model</div>
+        <div class="dag-stats"><span class="dag-in">IN: 1,805</span><span class="dag-out">OUT: 8 metrics</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Market Price Analytics &mdash; BigQuery OHLCV</div>
+  <div class="grid-main" style="margin-bottom:0;">
+    <div class="panel">
+      <div class="panel-title">30-Day Price Series</div>
+      <div class="panel-sub">Daily close price · BigQuery hourly OHLCV aggregate · select symbols to compare</div>
+      <div class="sym-row" id="sym-row"></div>
+      <div class="chart-wrap" style="height:260px;"><canvas id="priceChart"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Average Daily Volume</div>
+      <div class="panel-sub">BigTable time-series aggregation · all 8 symbols</div>
+      <div id="vol-bars" style="margin-top:6px;"></div>
+    </div>
+  </div>
+
+  <div class="section-label">DBT Mart — Risk Analytics</div>
+  <div class="grid-half" style="margin-bottom:0;">
+    <div class="panel">
+      <div class="panel-title">mart__risk_metrics</div>
+      <div class="panel-sub">7-day annualised volatility · Sharpe ratio · risk classification</div>
+      <table>
+        <thead><tr>
+          <th>Symbol</th><th>Volatility</th><th>Price &Delta;%</th><th>Sharpe</th><th>Risk</th>
+        </tr></thead>
+        <tbody id="risk-tbody"></tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Sharpe Ratio Comparison</div>
+      <div class="panel-sub">Risk-adjusted return · positive = outperforming risk-free rate</div>
+      <div class="chart-wrap" style="height:244px;"><canvas id="sharpeChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="section-label">Pipeline Architecture</div>
+  <div class="panel">
+    <div class="panel-title">End-to-End GCP Data Engineering Stack</div>
+    <div class="panel-sub">Streaming ingest &rarr; wide-column store &rarr; warehouse &rarr; DBT transformations &rarr; analytics</div>
+    <div class="arch-row">
+      <div class="arch-box" style="border-color:rgba(0,188,212,0.35);">
+        <div class="arch-icon">&#9889;</div>
+        <div class="arch-name">Dataflow</div>
+        <div class="arch-tech">Apache Beam<br>Streaming ingest<br>Real-time ticks</div>
+      </div>
+      <div class="arch-arr">&rarr;</div>
+      <div class="arch-box" style="border-color:rgba(206,147,216,0.35);">
+        <div class="arch-icon">&#128196;</div>
+        <div class="arch-name">BigTable</div>
+        <div class="arch-tech">Wide-column store<br>Raw tick storage<br>Time-series optimised</div>
+      </div>
+      <div class="arch-arr">&rarr;</div>
+      <div class="arch-box" style="border-color:rgba(68,138,255,0.35);">
+        <div class="arch-icon">&#128309;</div>
+        <div class="arch-name">BigQuery</div>
+        <div class="arch-tech">Data warehouse<br>SQL transforms<br>OHLCV aggregation</div>
+      </div>
+      <div class="arch-arr">&rarr;</div>
+      <div class="arch-box" style="border-color:rgba(255,193,7,0.35);">
+        <div class="arch-icon">&#128295;</div>
+        <div class="arch-name">DBT</div>
+        <div class="arch-tech">Staging models<br>Mart models<br>Risk analytics</div>
+      </div>
+      <div class="arch-arr">&rarr;</div>
+      <div class="arch-box" style="border-color:rgba(0,230,118,0.35);">
+        <div class="arch-icon">&#128202;</div>
+        <div class="arch-name">Dashboard</div>
+        <div class="arch-tech">Python pipeline<br>Airflow DAG<br>SQL + analytics</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div>Reddypalli Manojkumar Reddy &nbsp;·&nbsp; BITS Pilani &nbsp;·&nbsp; 2023A4PS1103G &nbsp;·&nbsp; PS-II Application &mdash; HSBC Technology</div>
+  <div class="tech-tags">
+    <span class="ttag">Apache Airflow</span>
+    <span class="ttag">Google BigQuery</span>
+    <span class="ttag">Google Dataflow</span>
+    <span class="ttag">Google BigTable</span>
+    <span class="ttag">DBT</span>
+    <span class="ttag">Python</span>
+    <span class="ttag">SQL</span>
+    <span class="ttag">R / Statistics</span>
+    <span class="ttag">Apache Beam</span>
+    <span class="ttag">PostgreSQL</span>
+  </div>
+</footer>
+
+<script>
+const PIPELINE_DATA = {"prices":{"AAPL":[{"date":"2026-03-05","price":184.42,"volume":446049},{"date":"2026-03-06","price":178.88,"volume":360750},{"date":"2026-03-07","price":177.68,"volume":569104},{"date":"2026-03-08","price":170.73,"volume":421828},{"date":"2026-03-09","price":168.09,"volume":669301},{"date":"2026-03-10","price":166.02,"volume":459131},{"date":"2026-03-11","price":171.64,"volume":318687},{"date":"2026-03-12","price":169.62,"volume":522683},{"date":"2026-03-13","price":168.75,"volume":457265},{"date":"2026-03-14","price":174.21,"volume":711825},{"date":"2026-03-15","price":176.67,"volume":246612},{"date":"2026-03-16","price":176.08,"volume":698016},{"date":"2026-03-17","price":178.95,"volume":518661},{"date":"2026-03-18","price":178.36,"volume":502278},{"date":"2026-03-19","price":176.27,"volume":515731},{"date":"2026-03-20","price":173.12,"volume":694239},{"date":"2026-03-21","price":171.61,"volume":527334},{"date":"2026-03-22","price":170.32,"volume":326019},{"date":"2026-03-23","price":165.36,"volume":430868},{"date":"2026-03-24","price":159.19,"volume":434117},{"date":"2026-03-25","price":160.32,"volume":411125},{"date":"2026-03-26","price":167.03,"volume":798883},{"date":"2026-03-27","price":169.34,"volume":522718},{"date":"2026-03-28","price":170.04,"volume":719771},{"date":"2026-03-29","price":172.35,"volume":592462},{"date":"2026-03-30","price":172.88,"volume":196809},{"date":"2026-03-31","price":170.48,"volume":273990},{"date":"2026-04-01","price":167.14,"volume":514186},{"date":"2026-04-02","price":163.74,"volume":511203},{"date":"2026-04-03","price":168.91,"volume":678234}],"AMZN":[{"date":"2026-03-05","price":179.33,"volume":459259},{"date":"2026-03-06","price":177.39,"volume":353256},{"date":"2026-03-07","price":181.17,"volume":378797},{"date":"2026-03-08","price":182.22,"volume":492214},{"date":"2026-03-09","price":181.25,"volume":635193},{"date":"2026-03-10","price":177.98,"volume":473463},{"date":"2026-03-11","price":177.4,"volume":813276},{"date":"2026-03-12","price":184.3,"volume":702405},{"date":"2026-03-13","price":183.79,"volume":824695},{"date":"2026-03-14","price":182.49,"volume":542885},{"date":"2026-03-15","price":178.71,"volume":562219},{"date":"2026-03-16","price":174.42,"volume":305060},{"date":"2026-03-17","price":172.66,"volume":269251},{"date":"2026-03-18","price":172.26,"volume":456964},{"date":"2026-03-19","price":169.09,"volume":552503},{"date":"2026-03-20","price":167.72,"volume":495686},{"date":"2026-03-21","price":165.51,"volume":550880},{"date":"2026-03-22","price":164.48,"volume":551428},{"date":"2026-03-23","price":164.35,"volume":560096},{"date":"2026-03-24","price":163.23,"volume":475946},{"date":"2026-03-25","price":163.02,"volume":453153},{"date":"2026-03-26","price":162.98,"volume":437620},{"date":"2026-03-27","price":165.74,"volume":474110},{"date":"2026-03-28","price":166.16,"volume":386830},{"date":"2026-03-29","price":165.45,"volume":429831},{"date":"2026-03-30","price":164.99,"volume":502275},{"date":"2026-03-31","price":171.41,"volume":649295},{"date":"2026-04-01","price":167.41,"volume":547107},{"date":"2026-04-02","price":164.66,"volume":324938},{"date":"2026-04-03","price":166.25,"volume":451330}],"GOOGL":[{"date":"2026-03-05","price":141.86,"volume":480111},{"date":"2026-03-06","price":139.75,"volume":721080},{"date":"2026-03-07","price":140.04,"volume":591586},{"date":"2026-03-08","price":139.66,"volume":632503},{"date":"2026-03-09","price":140.63,"volume":572123},{"date":"2026-03-10","price":139.85,"volume":539261},{"date":"2026-03-11","price":140.43,"volume":622085},{"date":"2026-03-12","price":143.12,"volume":453041},{"date":"2026-03-13","price":149.32,"volume":606773},{"date":"2026-03-14","price":153.98,"volume":439170},{"date":"2026-03-15","price":154.19,"volume":680408},{"date":"2026-03-16","price":157.71,"volume":515463},{"date":"2026-03-17","price":150.03,"volume":656779},{"date":"2026-03-18","price":144.46,"volume":474094},{"date":"2026-03-19","price":139.56,"volume":450367},{"date":"2026-03-20","price":140.18,"volume":499745},{"date":"2026-03-21","price":142.29,"volume":484373},{"date":"2026-03-22","price":140.45,"volume":661995},{"date":"2026-03-23","price":142.33,"volume":788639},{"date":"2026-03-24","price":142.24,"volume":309648},{"date":"2026-03-25","price":144.86,"volume":475236},{"date":"2026-03-26","price":141.92,"volume":534943},{"date":"2026-03-27","price":139.15,"volume":401586},{"date":"2026-03-28","price":141.27,"volume":645373},{"date":"2026-03-29","price":145.24,"volume":406093},{"date":"2026-03-30","price":144.69,"volume":500968},{"date":"2026-03-31","price":144.99,"volume":682240},{"date":"2026-04-01","price":142.51,"volume":486031},{"date":"2026-04-02","price":146.94,"volume":659397},{"date":"2026-04-03","price":150.65,"volume":546238}],"GS":[{"date":"2026-03-05","price":446.33,"volume":656799},{"date":"2026-03-06","price":430.72,"volume":494828},{"date":"2026-03-07","price":413.74,"volume":522857},{"date":"2026-03-08","price":409.87,"volume":484973},{"date":"2026-03-09","price":393.69,"volume":515038},{"date":"2026-03-10","price":397.54,"volume":482258},{"date":"2026-03-11","price":407.83,"volume":508351},{"date":"2026-03-12","price":402.59,"volume":337942},{"date":"2026-03-13","price":399.93,"volume":484530},{"date":"2026-03-14","price":392.66,"volume":445425},{"date":"2026-03-15","price":389.57,"volume":428039},{"date":"2026-03-16","price":381.05,"volume":638981},{"date":"2026-03-17","price":383.41,"volume":380342},{"date":"2026-03-18","price":374.5,"volume":571813},{"date":"2026-03-19","price":367.97,"volume":582593},{"date":"2026-03-20","price":368.15,"volume":354253},{"date":"2026-03-21","price":363.62,"volume":564491},{"date":"2026-03-22","price":358.23,"volume":636874},{"date":"2026-03-23","price":345.01,"volume":602194},{"date":"2026-03-24","price":331.07,"volume":743988},{"date":"2026-03-25","price":330.8,"volume":366467},{"date":"2026-03-26","price":329.14,"volume":425899},{"date":"2026-03-27","price":325.97,"volume":807526},{"date":"2026-03-28","price":335.31,"volume":465068},{"date":"2026-03-29","price":335.47,"volume":510845},{"date":"2026-03-30","price":336.6,"volume":605927},{"date":"2026-03-31","price":331.32,"volume":355158},{"date":"2026-04-01","price":340.52,"volume":432254},{"date":"2026-04-02","price":351.21,"volume":658041},{"date":"2026-04-03","price":359.72,"volume":443781}],"HSBC":[{"date":"2026-03-05","price":42.35,"volume":574522},{"date":"2026-03-06","price":42.99,"volume":722361},{"date":"2026-03-07","price":43.09,"volume":316469},{"date":"2026-03-08","price":42.89,"volume":657943},{"date":"2026-03-09","price":43.33,"volume":468234},{"date":"2026-03-10","price":43.27,"volume":566814},{"date":"2026-03-11","price":43.48,"volume":444468},{"date":"2026-03-12","price":44.57,"volume":658791},{"date":"2026-03-13","price":46.34,"volume":454800},{"date":"2026-03-14","price":45.96,"volume":576819},{"date":"2026-03-15","price":45.12,"volume":425107},{"date":"2026-03-16","price":45.15,"volume":531383},{"date":"2026-03-17","price":45.25,"volume":528339},{"date":"2026-03-18","price":45.72,"volume":562017},{"date":"2026-03-19","price":45.3,"volume":492240},{"date":"2026-03-20","price":44.82,"volume":462842},{"date":"2026-03-21","price":43.94,"volume":274384},{"date":"2026-03-22","price":42.88,"volume":683708},{"date":"2026-03-23","price":41.47,"volume":384408},{"date":"2026-03-24","price":40.42,"volume":540563},{"date":"2026-03-25","price":40.73,"volume":666857},{"date":"2026-03-26","price":41.37,"volume":423721},{"date":"2026-03-27","price":41.25,"volume":652772},{"date":"2026-03-28","price":41.14,"volume":366970},{"date":"2026-03-29","price":41.16,"volume":516518},{"date":"2026-03-30","price":41.04,"volume":453567},{"date":"2026-03-31","price":41.71,"volume":584050},{"date":"2026-04-01","price":41.92,"volume":586708},{"date":"2026-04-02","price":43.11,"volume":518114},{"date":"2026-04-03","price":43.37,"volume":612610}],"JPM":[{"date":"2026-03-05","price":198.17,"volume":513421},{"date":"2026-03-06","price":193.67,"volume":455638},{"date":"2026-03-07","price":190.24,"volume":503743},{"date":"2026-03-08","price":185.38,"volume":429478},{"date":"2026-03-09","price":180.57,"volume":354391},{"date":"2026-03-10","price":178.14,"volume":685650},{"date":"2026-03-11","price":178.4,"volume":288941},{"date":"2026-03-12","price":179.2,"volume":566387},{"date":"2026-03-13","price":177.87,"volume":494128},{"date":"2026-03-14","price":175.91,"volume":482901},{"date":"2026-03-15","price":176.93,"volume":395278},{"date":"2026-03-16","price":181.88,"volume":578980},{"date":"2026-03-17","price":181.38,"volume":469332},{"date":"2026-03-18","price":181.27,"volume":549085},{"date":"2026-03-19","price":183.22,"volume":575566},{"date":"2026-03-20","price":182.53,"volume":492744},{"date":"2026-03-21","price":181.31,"volume":570962},{"date":"2026-03-22","price":182.66,"volume":456740},{"date":"2026-03-23","price":184.5,"volume":534928},{"date":"2026-03-24","price":185.95,"volume":375276},{"date":"2026-03-25","price":179.28,"volume":597816},{"date":"2026-03-26","price":175.92,"volume":500822},{"date":"2026-03-27","price":179.27,"volume":486036},{"date":"2026-03-28","price":176.05,"volume":475057},{"date":"2026-03-29","price":172.3,"volume":435500},{"date":"2026-03-30","price":172.62,"volume":490652},{"date":"2026-03-31","price":177.43,"volume":495237},{"date":"2026-04-01","price":177.68,"volume":244324},{"date":"2026-04-02","price":177.05,"volume":411874},{"date":"2026-04-03","price":181.33,"volume":417423}],"MS":[{"date":"2026-03-05","price":94.65,"volume":548000},{"date":"2026-03-06","price":94.0,"volume":644128},{"date":"2026-03-07","price":96.52,"volume":576560},{"date":"2026-03-08","price":96.64,"volume":539235},{"date":"2026-03-09","price":96.77,"volume":371797},{"date":"2026-03-10","price":99.03,"volume":465391},{"date":"2026-03-11","price":100.02,"volume":527279},{"date":"2026-03-12","price":99.46,"volume":681902},{"date":"2026-03-13","price":99.4,"volume":377288},{"date":"2026-03-14","price":97.3,"volume":439123},{"date":"2026-03-15","price":95.63,"volume":503861},{"date":"2026-03-16","price":94.59,"volume":446460},{"date":"2026-03-17","price":92.58,"volume":601963},{"date":"2026-03-18","price":92.16,"volume":611777},{"date":"2026-03-19","price":92.99,"volume":486460},{"date":"2026-03-20","price":92.29,"volume":517227},{"date":"2026-03-21","price":93.61,"volume":661537},{"date":"2026-03-22","price":93.81,"volume":320857},{"date":"2026-03-23","price":93.18,"volume":263104},{"date":"2026-03-24","price":94.01,"volume":794568},{"date":"2026-03-25","price":93.23,"volume":396615},{"date":"2026-03-26","price":93.82,"volume":346323},{"date":"2026-03-27","price":94.99,"volume":333937},{"date":"2026-03-28","price":96.62,"volume":523287},{"date":"2026-03-29","price":93.53,"volume":510334},{"date":"2026-03-30","price":90.43,"volume":900275},{"date":"2026-03-31","price":89.39,"volume":512953},{"date":"2026-04-01","price":90.7,"volume":560918},{"date":"2026-04-02","price":88.78,"volume":488875},{"date":"2026-04-03","price":90.16,"volume":343796}],"MSFT":[{"date":"2026-03-05","price":371.73,"volume":490729},{"date":"2026-03-06","price":373.44,"volume":564398},{"date":"2026-03-07","price":387.02,"volume":569752},{"date":"2026-03-08","price":395.5,"volume":435907},{"date":"2026-03-09","price":395.65,"volume":451816},{"date":"2026-03-10","price":387.76,"volume":363325},{"date":"2026-03-11","price":382.06,"volume":504144},{"date":"2026-03-12","price":373.2,"volume":299498},{"date":"2026-03-13","price":372.65,"volume":521909},{"date":"2026-03-14","price":377.66,"volume":460726},{"date":"2026-03-15","price":391.89,"volume":618194},{"date":"2026-03-16","price":392.55,"volume":428156},{"date":"2026-03-17","price":391.31,"volume":401709},{"date":"2026-03-18","price":389.49,"volume":467086},{"date":"2026-03-19","price":388.07,"volume":359707},{"date":"2026-03-20","price":387.85,"volume":463420},{"date":"2026-03-21","price":391.94,"volume":546850},{"date":"2026-03-22","price":393.08,"volume":414276},{"date":"2026-03-23","price":405.08,"volume":489937},{"date":"2026-03-24","price":413.48,"volume":391142},{"date":"2026-03-25","price":416.11,"volume":422051},{"date":"2026-03-26","price":416.03,"volume":490438},{"date":"2026-03-27","price":423.66,"volume":468401},{"date":"2026-03-28","price":425.61,"volume":372364},{"date":"2026-03-29","price":431.57,"volume":506705},{"date":"2026-03-30","price":434.88,"volume":534865},{"date":"2026-03-31","price":439.39,"volume":538429},{"date":"2026-04-01","price":436.91,"volume":625439},{"date":"2026-04-02","price":438.31,"volume":535470},{"date":"2026-04-03","price":447.07,"volume":475273}]},"risk":{"AAPL":{"symbol":"AAPL","volatility_7d":0.131264,"avg_volume_7d":70268.03,"price_change_pct":1.769,"sharpe_ratio":0.2667,"risk_level":"LOW"},"AMZN":{"symbol":"AMZN","volatility_7d":0.129639,"avg_volume_7d":65594.39,"price_change_pct":-10.7169,"sharpe_ratio":-1.2546,"risk_level":"LOW"},"GOOGL":{"symbol":"GOOGL","volatility_7d":0.127589,"avg_volume_7d":72476.19,"price_change_pct":5.3032,"sharpe_ratio":0.6746,"risk_level":"LOW"},"GS":{"symbol":"GS","volatility_7d":0.1191,"avg_volume_7d":68479.1,"price_change_pct":-9.8469,"sharpe_ratio":-1.2537,"risk_level":"LOW"},"HSBC":{"symbol":"HSBC","volatility_7d":0.118898,"avg_volume_7d":66323.49,"price_change_pct":-8.0764,"sharpe_ratio":-1.0093,"risk_level":"LOW"},"JPM":{"symbol":"JPM","volatility_7d":0.136006,"avg_volume_7d":65658.55,"price_change_pct":3.759,"sharpe_ratio":0.4773,"risk_level":"LOW"},"MS":{"symbol":"MS","volatility_7d":0.120101,"avg_volume_7d":67548.87,"price_change_pct":-8.0841,"sharpe_ratio":-0.9991,"risk_level":"LOW"},"MSFT":{"symbol":"MSFT","volatility_7d":0.11569,"avg_volume_7d":64379.27,"price_change_pct":21.0315,"sharpe_ratio":2.5485,"risk_level":"LOW"}},"dates":["2026-03-05","2026-03-06","2026-03-07","2026-03-08","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-14","2026-03-15","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-21","2026-03-22","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-28","2026-03-29","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-03"]};
+</script>
+
+<script>
+const COLORS = {HSBC:'#ff6d00',AAPL:'#448aff',MSFT:'#00e676',GOOGL:'#ffc107',AMZN:'#00bcd4',JPM:'#ce93d8',GS:'#ff5252',MS:'#80cbc4'};
+const SYMBOLS = Object.keys(PIPELINE_DATA.prices);
+let activeSyms = ['HSBC','AAPL','MSFT'];
+let priceChart = null;
+
+// Symbol buttons
+const symRow = document.getElementById('sym-row');
+SYMBOLS.forEach(s => {
+  const btn = document.createElement('button');
+  btn.className = 'sym-btn' + (activeSyms.includes(s) ? ' active' : '');
+  btn.textContent = s;
+  btn.onclick = () => {
+    if (activeSyms.includes(s)) {
+      if (activeSyms.length === 1) return;
+      activeSyms = activeSyms.filter(x => x !== s);
+      btn.classList.remove('active');
+    } else {
+      activeSyms.push(s);
+      btn.classList.add('active');
+    }
+    renderPriceChart();
+  };
+  symRow.appendChild(btn);
+});
+
+function renderPriceChart() {
+  const labels = PIPELINE_DATA.dates.map(d => d.slice(5));
+  const datasets = activeSyms.map(sym => ({
+    label: sym,
+    data: PIPELINE_DATA.prices[sym].map(r => r.price),
+    borderColor: COLORS[sym],
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    pointRadius: 0,
+    tension: 0.3,
+  }));
+  if (priceChart) priceChart.destroy();
+  priceChart = new Chart(document.getElementById('priceChart'), {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#555d72', font: { family: 'IBM Plex Mono', size: 10 }, maxTicksLimit: 8, autoSkip: true } },
+        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#555d72', font: { family: 'IBM Plex Mono', size: 10 }, callback: v => '$' + v.toFixed(0) } }
+      }
+    }
+  });
+}
+renderPriceChart();
+
+// Volume bars
+const maxVol = Math.max(...SYMBOLS.map(s => PIPELINE_DATA.risk[s]?.avg_volume_7d || 0));
+const volDiv = document.getElementById('vol-bars');
+SYMBOLS.forEach(s => {
+  const avg = PIPELINE_DATA.risk[s]?.avg_volume_7d || 0;
+  const pct = (avg / maxVol * 100).toFixed(1);
+  const div = document.createElement('div');
+  div.className = 'vol-row';
+  div.innerHTML = `<div class="vol-sym">${s}</div><div class="vol-bg"><div class="vol-fill" style="width:${pct}%"></div></div><div class="vol-val">${(avg/1000).toFixed(0)}K</div>`;
+  volDiv.appendChild(div);
+});
+
+// Risk table
+const tbody = document.getElementById('risk-tbody');
+SYMBOLS.forEach(s => {
+  const r = PIPELINE_DATA.risk[s];
+  if (!r) return;
+  const chg = r.price_change_pct;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="font-weight:600;color:${COLORS[s]}">${s}</td>
+    <td>${(r.volatility_7d*100).toFixed(2)}%</td>
+    <td class="${chg>=0?'pos':'neg'}">${chg>=0?'+':''}${chg.toFixed(2)}%</td>
+    <td class="${r.sharpe_ratio>=0?'pos':'neg'}">${r.sharpe_ratio.toFixed(3)}</td>
+    <td><span class="rbadge r${r.risk_level}">${r.risk_level}</span></td>`;
+  tbody.appendChild(tr);
+});
+
+// Sharpe chart
+const sharpeVals = SYMBOLS.map(s => PIPELINE_DATA.risk[s]?.sharpe_ratio || 0);
+new Chart(document.getElementById('sharpeChart'), {
+  type: 'bar',
+  data: {
+    labels: SYMBOLS,
+    datasets: [{
+      data: sharpeVals,
+      backgroundColor: sharpeVals.map(v => v >= 0 ? 'rgba(0,230,118,0.7)' : 'rgba(255,82,82,0.65)'),
+      borderColor: sharpeVals.map(v => v >= 0 ? '#00e676' : '#ff5252'),
+      borderWidth: 1,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8b92a8', font: { family: 'IBM Plex Mono', size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#555d72', font: { family: 'IBM Plex Mono', size: 10 }, callback: v => v.toFixed(1) } }
+    }
+  }
+});
+</script>
+</body>
+</html>

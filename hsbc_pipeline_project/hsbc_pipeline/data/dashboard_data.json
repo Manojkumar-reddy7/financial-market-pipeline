@@ -1,0 +1,1540 @@
+{
+  "generated_at": "2026-04-04T16:44:49.309031",
+  "ohlcv": [
+    {
+      "symbol": "AAPL",
+      "date": "2026-04-03",
+      "price": 168.9148,
+      "volume": 678234
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-04-03",
+      "price": 166.2539,
+      "volume": 451330
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-04-03",
+      "price": 150.6476,
+      "volume": 546238
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-04-03",
+      "price": 359.7203,
+      "volume": 443781
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-04-03",
+      "price": 43.3666,
+      "volume": 612610
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-04-03",
+      "price": 181.3302,
+      "volume": 417423
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-04-03",
+      "price": 90.1581,
+      "volume": 343796
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-04-03",
+      "price": 447.0733,
+      "volume": 475273
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-04-02",
+      "price": 163.7394,
+      "volume": 511203
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-04-02",
+      "price": 164.6593,
+      "volume": 324938
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-04-02",
+      "price": 146.9445,
+      "volume": 659397
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-04-02",
+      "price": 351.2124,
+      "volume": 658041
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-04-02",
+      "price": 43.107,
+      "volume": 518114
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-04-02",
+      "price": 177.0452,
+      "volume": 411874
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-04-02",
+      "price": 88.7781,
+      "volume": 488875
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-04-02",
+      "price": 438.3133,
+      "volume": 535470
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-04-01",
+      "price": 167.1385,
+      "volume": 514186
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-04-01",
+      "price": 167.41,
+      "volume": 547107
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-04-01",
+      "price": 142.513,
+      "volume": 486031
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-04-01",
+      "price": 340.5172,
+      "volume": 432254
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-04-01",
+      "price": 41.9243,
+      "volume": 586708
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-04-01",
+      "price": 177.6764,
+      "volume": 244324
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-04-01",
+      "price": 90.697,
+      "volume": 560918
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-04-01",
+      "price": 436.9058,
+      "volume": 625439
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-31",
+      "price": 170.4844,
+      "volume": 273990
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-31",
+      "price": 171.4149,
+      "volume": 649295
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-31",
+      "price": 144.985,
+      "volume": 682240
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-31",
+      "price": 331.3175,
+      "volume": 355158
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-31",
+      "price": 41.7112,
+      "volume": 584050
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-31",
+      "price": 177.4261,
+      "volume": 495237
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-31",
+      "price": 89.3891,
+      "volume": 512953
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-31",
+      "price": 439.3879,
+      "volume": 538429
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-30",
+      "price": 172.8812,
+      "volume": 196809
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-30",
+      "price": 164.9917,
+      "volume": 502275
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-30",
+      "price": 144.6856,
+      "volume": 500968
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-30",
+      "price": 336.5991,
+      "volume": 605927
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-30",
+      "price": 41.037,
+      "volume": 453567
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-30",
+      "price": 172.6167,
+      "volume": 490652
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-30",
+      "price": 90.4325,
+      "volume": 900275
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-30",
+      "price": 434.8811,
+      "volume": 534865
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-29",
+      "price": 172.3502,
+      "volume": 592462
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-29",
+      "price": 165.4533,
+      "volume": 429831
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-29",
+      "price": 145.2375,
+      "volume": 406093
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-29",
+      "price": 335.4737,
+      "volume": 510845
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-29",
+      "price": 41.1559,
+      "volume": 516518
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-29",
+      "price": 172.2973,
+      "volume": 435500
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-29",
+      "price": 93.5287,
+      "volume": 510334
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-29",
+      "price": 431.569,
+      "volume": 506705
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-28",
+      "price": 170.0426,
+      "volume": 719771
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-28",
+      "price": 166.1576,
+      "volume": 386830
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-28",
+      "price": 141.2728,
+      "volume": 645373
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-28",
+      "price": 335.3145,
+      "volume": 465068
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-28",
+      "price": 41.1427,
+      "volume": 366970
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-28",
+      "price": 176.0497,
+      "volume": 475057
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-28",
+      "price": 96.6215,
+      "volume": 523287
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-28",
+      "price": 425.6092,
+      "volume": 372364
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-27",
+      "price": 169.3381,
+      "volume": 522718
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-27",
+      "price": 165.7353,
+      "volume": 474110
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-27",
+      "price": 139.1495,
+      "volume": 401586
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-27",
+      "price": 325.9725,
+      "volume": 807526
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-27",
+      "price": 41.2525,
+      "volume": 652772
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-27",
+      "price": 179.2697,
+      "volume": 486036
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-27",
+      "price": 94.9897,
+      "volume": 333937
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-27",
+      "price": 423.66,
+      "volume": 468401
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-26",
+      "price": 167.0253,
+      "volume": 798883
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-26",
+      "price": 162.9844,
+      "volume": 437620
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-26",
+      "price": 141.923,
+      "volume": 534943
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-26",
+      "price": 329.1445,
+      "volume": 425899
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-26",
+      "price": 41.3702,
+      "volume": 423721
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-26",
+      "price": 175.9232,
+      "volume": 500822
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-26",
+      "price": 93.8201,
+      "volume": 346323
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-26",
+      "price": 416.0339,
+      "volume": 490438
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-25",
+      "price": 160.3187,
+      "volume": 411125
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-25",
+      "price": 163.0193,
+      "volume": 453153
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-25",
+      "price": 144.8596,
+      "volume": 475236
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-25",
+      "price": 330.8018,
+      "volume": 366467
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-25",
+      "price": 40.7349,
+      "volume": 666857
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-25",
+      "price": 179.2799,
+      "volume": 597816
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-25",
+      "price": 93.2266,
+      "volume": 396615
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-25",
+      "price": 416.1128,
+      "volume": 422051
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-24",
+      "price": 159.1892,
+      "volume": 434117
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-24",
+      "price": 163.227,
+      "volume": 475946
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-24",
+      "price": 142.2393,
+      "volume": 309648
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-24",
+      "price": 331.0701,
+      "volume": 743988
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-24",
+      "price": 40.4194,
+      "volume": 540563
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-24",
+      "price": 185.948,
+      "volume": 375276
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-24",
+      "price": 94.0124,
+      "volume": 794568
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-24",
+      "price": 413.4763,
+      "volume": 391142
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-23",
+      "price": 165.3595,
+      "volume": 430868
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-23",
+      "price": 164.3513,
+      "volume": 560096
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-23",
+      "price": 142.3332,
+      "volume": 788639
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-23",
+      "price": 345.0074,
+      "volume": 602194
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-23",
+      "price": 41.466,
+      "volume": 384408
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-23",
+      "price": 184.5013,
+      "volume": 534928
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-23",
+      "price": 93.1769,
+      "volume": 263104
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-23",
+      "price": 405.0751,
+      "volume": 489937
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-22",
+      "price": 170.324,
+      "volume": 326019
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-22",
+      "price": 164.4816,
+      "volume": 551428
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-22",
+      "price": 140.4452,
+      "volume": 661995
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-22",
+      "price": 358.2347,
+      "volume": 636874
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-22",
+      "price": 42.882,
+      "volume": 683708
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-22",
+      "price": 182.6595,
+      "volume": 456740
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-22",
+      "price": 93.8099,
+      "volume": 320857
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-22",
+      "price": 393.083,
+      "volume": 414276
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-21",
+      "price": 171.6146,
+      "volume": 527334
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-21",
+      "price": 165.5149,
+      "volume": 550880
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-21",
+      "price": 142.295,
+      "volume": 484373
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-21",
+      "price": 363.6158,
+      "volume": 564491
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-21",
+      "price": 43.9378,
+      "volume": 274384
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-21",
+      "price": 181.3141,
+      "volume": 570962
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-21",
+      "price": 93.6085,
+      "volume": 661537
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-21",
+      "price": 391.9406,
+      "volume": 546850
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-20",
+      "price": 173.1196,
+      "volume": 694239
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-20",
+      "price": 167.7152,
+      "volume": 495686
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-20",
+      "price": 140.1847,
+      "volume": 499745
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-20",
+      "price": 368.1465,
+      "volume": 354253
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-20",
+      "price": 44.8233,
+      "volume": 462842
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-20",
+      "price": 182.5337,
+      "volume": 492744
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-20",
+      "price": 92.2882,
+      "volume": 517227
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-20",
+      "price": 387.8466,
+      "volume": 463420
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-19",
+      "price": 176.2668,
+      "volume": 515731
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-19",
+      "price": 169.0872,
+      "volume": 552503
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-19",
+      "price": 139.5607,
+      "volume": 450367
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-19",
+      "price": 367.9732,
+      "volume": 582593
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-19",
+      "price": 45.2958,
+      "volume": 492240
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-19",
+      "price": 183.2155,
+      "volume": 575566
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-19",
+      "price": 92.9893,
+      "volume": 486460
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-19",
+      "price": 388.0703,
+      "volume": 359707
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-18",
+      "price": 178.3613,
+      "volume": 502278
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-18",
+      "price": 172.262,
+      "volume": 456964
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-18",
+      "price": 144.4555,
+      "volume": 474094
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-18",
+      "price": 374.4978,
+      "volume": 571813
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-18",
+      "price": 45.7213,
+      "volume": 562017
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-18",
+      "price": 181.2692,
+      "volume": 549085
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-18",
+      "price": 92.1571,
+      "volume": 611777
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-18",
+      "price": 389.4874,
+      "volume": 467086
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-17",
+      "price": 178.952,
+      "volume": 518661
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-17",
+      "price": 172.662,
+      "volume": 269251
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-17",
+      "price": 150.0283,
+      "volume": 656779
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-17",
+      "price": 383.4097,
+      "volume": 380342
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-17",
+      "price": 45.2452,
+      "volume": 528339
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-17",
+      "price": 181.3836,
+      "volume": 469332
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-17",
+      "price": 92.5845,
+      "volume": 601963
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-17",
+      "price": 391.3073,
+      "volume": 401709
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-16",
+      "price": 176.0786,
+      "volume": 698016
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-16",
+      "price": 174.4153,
+      "volume": 305060
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-16",
+      "price": 157.7137,
+      "volume": 515463
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-16",
+      "price": 381.0534,
+      "volume": 638981
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-16",
+      "price": 45.1533,
+      "volume": 531383
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-16",
+      "price": 181.8823,
+      "volume": 578980
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-16",
+      "price": 94.5858,
+      "volume": 446460
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-16",
+      "price": 392.5546,
+      "volume": 428156
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-15",
+      "price": 176.6747,
+      "volume": 246612
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-15",
+      "price": 178.7111,
+      "volume": 562219
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-15",
+      "price": 154.1874,
+      "volume": 680408
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-15",
+      "price": 389.5741,
+      "volume": 428039
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-15",
+      "price": 45.1153,
+      "volume": 425107
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-15",
+      "price": 176.9271,
+      "volume": 395278
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-15",
+      "price": 95.6334,
+      "volume": 503861
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-15",
+      "price": 391.8889,
+      "volume": 618194
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-14",
+      "price": 174.2137,
+      "volume": 711825
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-14",
+      "price": 182.4933,
+      "volume": 542885
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-14",
+      "price": 153.9771,
+      "volume": 439170
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-14",
+      "price": 392.661,
+      "volume": 445425
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-14",
+      "price": 45.9591,
+      "volume": 576819
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-14",
+      "price": 175.91,
+      "volume": 482901
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-14",
+      "price": 97.2997,
+      "volume": 439123
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-14",
+      "price": 377.6563,
+      "volume": 460726
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-13",
+      "price": 168.7515,
+      "volume": 457265
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-13",
+      "price": 183.7914,
+      "volume": 824695
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-13",
+      "price": 149.3206,
+      "volume": 606773
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-13",
+      "price": 399.9269,
+      "volume": 484530
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-13",
+      "price": 46.3432,
+      "volume": 454800
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-13",
+      "price": 177.8708,
+      "volume": 494128
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-13",
+      "price": 99.3973,
+      "volume": 377288
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-13",
+      "price": 372.647,
+      "volume": 521909
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-12",
+      "price": 169.6189,
+      "volume": 522683
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-12",
+      "price": 184.3021,
+      "volume": 702405
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-12",
+      "price": 143.1247,
+      "volume": 453041
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-12",
+      "price": 402.5863,
+      "volume": 337942
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-12",
+      "price": 44.5693,
+      "volume": 658791
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-12",
+      "price": 179.203,
+      "volume": 566387
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-12",
+      "price": 99.4587,
+      "volume": 681902
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-12",
+      "price": 373.1998,
+      "volume": 299498
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-11",
+      "price": 171.643,
+      "volume": 318687
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-11",
+      "price": 177.3956,
+      "volume": 813276
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-11",
+      "price": 140.4313,
+      "volume": 622085
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-11",
+      "price": 407.834,
+      "volume": 508351
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-11",
+      "price": 43.4842,
+      "volume": 444468
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-11",
+      "price": 178.4034,
+      "volume": 288941
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-11",
+      "price": 100.0208,
+      "volume": 527279
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-11",
+      "price": 382.0566,
+      "volume": 504144
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-10",
+      "price": 166.0189,
+      "volume": 459131
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-10",
+      "price": 177.9792,
+      "volume": 473463
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-10",
+      "price": 139.8519,
+      "volume": 539261
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-10",
+      "price": 397.5425,
+      "volume": 482258
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-10",
+      "price": 43.2652,
+      "volume": 566814
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-10",
+      "price": 178.1351,
+      "volume": 685650
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-10",
+      "price": 99.035,
+      "volume": 465391
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-10",
+      "price": 387.7558,
+      "volume": 363325
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-09",
+      "price": 168.0877,
+      "volume": 669301
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-09",
+      "price": 181.2466,
+      "volume": 635193
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-09",
+      "price": 140.6329,
+      "volume": 572123
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-09",
+      "price": 393.6863,
+      "volume": 515038
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-09",
+      "price": 43.3282,
+      "volume": 468234
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-09",
+      "price": 180.5715,
+      "volume": 354391
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-09",
+      "price": 96.7714,
+      "volume": 371797
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-09",
+      "price": 395.6481,
+      "volume": 451816
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-08",
+      "price": 170.7317,
+      "volume": 421828
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-08",
+      "price": 182.2181,
+      "volume": 492214
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-08",
+      "price": 139.657,
+      "volume": 632503
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-08",
+      "price": 409.8714,
+      "volume": 484973
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-08",
+      "price": 42.8902,
+      "volume": 657943
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-08",
+      "price": 185.3763,
+      "volume": 429478
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-08",
+      "price": 96.6377,
+      "volume": 539235
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-08",
+      "price": 395.5032,
+      "volume": 435907
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-07",
+      "price": 177.6807,
+      "volume": 569104
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-07",
+      "price": 181.1692,
+      "volume": 378797
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-07",
+      "price": 140.0428,
+      "volume": 591586
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-07",
+      "price": 413.7353,
+      "volume": 522857
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-07",
+      "price": 43.0871,
+      "volume": 316469
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-07",
+      "price": 190.2382,
+      "volume": 503743
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-07",
+      "price": 96.523,
+      "volume": 576560
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-07",
+      "price": 387.0191,
+      "volume": 569752
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-06",
+      "price": 178.8771,
+      "volume": 360750
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-06",
+      "price": 177.3862,
+      "volume": 353256
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-06",
+      "price": 139.7507,
+      "volume": 721080
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-06",
+      "price": 430.7205,
+      "volume": 494828
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-06",
+      "price": 42.986,
+      "volume": 722361
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-06",
+      "price": 193.6693,
+      "volume": 455638
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-06",
+      "price": 93.9959,
+      "volume": 644128
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-06",
+      "price": 373.4448,
+      "volume": 564398
+    },
+    {
+      "symbol": "AAPL",
+      "date": "2026-03-05",
+      "price": 184.4229,
+      "volume": 446049
+    },
+    {
+      "symbol": "AMZN",
+      "date": "2026-03-05",
+      "price": 179.3337,
+      "volume": 459259
+    },
+    {
+      "symbol": "GOOGL",
+      "date": "2026-03-05",
+      "price": 141.8602,
+      "volume": 480111
+    },
+    {
+      "symbol": "GS",
+      "date": "2026-03-05",
+      "price": 446.3276,
+      "volume": 656799
+    },
+    {
+      "symbol": "HSBC",
+      "date": "2026-03-05",
+      "price": 42.3485,
+      "volume": 574522
+    },
+    {
+      "symbol": "JPM",
+      "date": "2026-03-05",
+      "price": 198.1681,
+      "volume": 513421
+    },
+    {
+      "symbol": "MS",
+      "date": "2026-03-05",
+      "price": 94.6546,
+      "volume": 548000
+    },
+    {
+      "symbol": "MSFT",
+      "date": "2026-03-05",
+      "price": 371.7346,
+      "volume": 490729
+    }
+  ],
+  "risk_metrics": [
+    {
+      "symbol": "AAPL",
+      "volatility_7d": 0.131264,
+      "avg_volume_7d": 70268.03,
+      "price_change_pct": 1.769,
+      "sharpe_ratio": 0.2667,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "AMZN",
+      "volatility_7d": 0.129639,
+      "avg_volume_7d": 65594.39,
+      "price_change_pct": -10.7169,
+      "sharpe_ratio": -1.2546,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "GOOGL",
+      "volatility_7d": 0.127589,
+      "avg_volume_7d": 72476.19,
+      "price_change_pct": 5.3032,
+      "sharpe_ratio": 0.6746,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "GS",
+      "volatility_7d": 0.1191,
+      "avg_volume_7d": 68479.1,
+      "price_change_pct": -9.8469,
+      "sharpe_ratio": -1.2537,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "HSBC",
+      "volatility_7d": 0.118898,
+      "avg_volume_7d": 66323.49,
+      "price_change_pct": -8.0764,
+      "sharpe_ratio": -1.0093,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "JPM",
+      "volatility_7d": 0.136006,
+      "avg_volume_7d": 65658.55,
+      "price_change_pct": 3.759,
+      "sharpe_ratio": 0.4773,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "MS",
+      "volatility_7d": 0.120101,
+      "avg_volume_7d": 67548.87,
+      "price_change_pct": -8.0841,
+      "sharpe_ratio": -0.9991,
+      "risk_level": "LOW"
+    },
+    {
+      "symbol": "MSFT",
+      "volatility_7d": 0.11569,
+      "avg_volume_7d": 64379.27,
+      "price_change_pct": 21.0315,
+      "sharpe_ratio": 2.5485,
+      "risk_level": "LOW"
+    }
+  ],
+  "pipeline_runs": [
+    {
+      "dag_id": "financial_market_pipeline_v1",
+      "task_id": "build_risk_mart",
+      "status": "SUCCESS",
+      "started_at": "2026-04-04T16:44:49.280164",
+      "ended_at": "2026-04-04T16:44:49.298265",
+      "rows_in": 1805,
+      "rows_out": 8
+    },
+    {
+      "dag_id": "financial_market_pipeline_v1",
+      "task_id": "transform_to_ohlcv",
+      "status": "SUCCESS",
+      "started_at": "2026-04-04T16:44:49.229955",
+      "ended_at": "2026-04-04T16:44:49.273825",
+      "rows_in": 4800,
+      "rows_out": 1805
+    },
+    {
+      "dag_id": "financial_market_pipeline_v1",
+      "task_id": "ingest_market_ticks",
+      "status": "SUCCESS",
+      "started_at": "2026-04-04T16:44:49.132783",
+      "ended_at": "2026-04-04T16:44:49.222558",
+      "rows_in": 0,
+      "rows_out": 4800
+    }
+  ]
+}
